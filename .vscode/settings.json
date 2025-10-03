@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "ula.h": "c",
+        "layer2.h": "c",
+        "tiles.h": "c",
+        "tilemap.h": "c",
+        "dma.h": "c",
+        "sprite.h": "c"
+    }
+}

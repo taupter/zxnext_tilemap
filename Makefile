@@ -25,7 +25,7 @@ CFLAGS := +zxn -subtype=nex -vn -startup=31 -clib=sdcc_iy -m $(CFLAGS_OPT)
 
 all:
 	$(MKDIR) $(BINDIR)
-	zcc $(CFLAGS) $(DEBUG) @zproject.lst -o $(BINDIR)/zxnext_tilemap -create-app
+	zcc $(CFLAGS) $(DEBUG) -pragma-include:config/zpragma.inc @zproject.lst -o $(BINDIR)/zxnext_tilemap -create-app
 
 debug: DEBUG = $(DEBUGFLAGS)
 

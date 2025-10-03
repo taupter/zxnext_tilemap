@@ -14,28 +14,18 @@
 #include <stdbool.h>
 #include <string.h>
 
+#include "config/zconfig.h"
+
+#include "zxnext/src/bank.h"
+#include "zxnext/src/ula.h"
+#include "zxnext/src/layer2.h"
+#include "zxnext/src/sprite.h"
+#include "zxnext/src/tilemap.h"
+#include "zxnext/src/dma.h"
+#include "zxnext/src/math.h"
+
 #include "globals.h"
-#include "bank.h"
-#include "ula.h"
-#include "layer2.h"
 #include "tiles.h"
-#include "sprites.h"
-#include "tilemap.h"
-#include "dma.h"
-
-#define CRT_6000	0
-
-#if (CRT_6000 == 1)
-#pragma output CRT_ORG_CODE = 0x6164
-#else
-#pragma output CRT_ORG_CODE = 0x8184
-#endif
-#pragma output REGISTER_SP = 0xC000
-#pragma output CLIB_MALLOC_HEAP_SIZE = 0
-#pragma output CLIB_STDIO_HEAP_SIZE = 0
-#pragma output CLIB_FOPEN_MAX = -1
-#pragma output CRT_ORG_BANK_17 = 0x0000
-#pragma output CRT_ORG_BANK_18 = 0x0000
 
 /*
  * Define IDE_FRIENDLY in your C IDE to disable Z88DK C extensions and avoid
@@ -176,7 +166,7 @@ int main(void)
 	layer2_clear_screen(ZXN_RGB332_ZX_BRIGHT_MAGENTA);
     background_create();
 	sprites_clear();
-	tilemap_init(tm_mapdata_offset, tm_tiledata_offset);
+	tilemap_init(tm_mapdata_offset, tm_tiledata_offset, true);
 	tilemap_clear(76, 0, SCREEN_TILES_X * SCREEN_TILES_Y * 2, tm_mapdata_offset);
 
 	bank_set_16k(MMU_TILE_DATA, PAGE_TILE_DATA);
